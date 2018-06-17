@@ -179,3 +179,63 @@ function drawMenu($menu, $vertical = TRUE) {
 		</div>
 	</body>
 </html>
+Домашнее задание № 5
+Написать 2 функции сортировки массивов, используя алгоритмы «Сортировка обменами», «Сортировка вставками»
+Рещение.
+<?php
+//Сортировка выбором
+function selectSort(array $arr) {
+    $count= count($arr);
+    if ($count <= 1){
+        return $arr;
+    }
+ 
+    for ($i = 0; $i < $count; $i++){
+        $k = $i;
+ 
+        for($j = $i + 1; $j < $count; $j++){
+            if ($arr[$k] > $arr[$j]){
+                $k = $j;
+            }
+ 
+            if ($k != $i){
+                $tmp = $arr[$i];
+                $arr[$i] = $arr[$k];
+                $arr[$k] = $tmp;
+            }
+        }
+    }
+ 
+    return $arr;
+}
+echo "<br>", "Select Sorting - 11, 3, 51, 7, 99, 33, 55, 9", "<br>";
+$arr = array(11, 3, 51, 7, 99, 33, 55, 9);
+$reuslt = selectSort($arr);
+print_r($reuslt);
+?>
+<?php
+//Сортировка вставками
+function insertSort(array $arr) {
+    $count = count($arr);
+    if ($count <= 1) {
+        return $arr;
+    }
+ 
+    for ($i = 1; $i < $count; $i++) {
+        $cur_val = $arr[$i];
+        $j = $i - 1;
+ 
+        while (isset($arr[$j]) && $arr[$j] > $cur_val) {
+            $arr[$j + 1] = $arr[$j];
+            $arr[$j] = $cur_val;
+            $j--;
+        }
+    }
+ 
+    return $arr;
+}
+echo "<br>", "Сортировка вставками - 1, 100, 5, 73, 11, 8, 9, 55, 56, 12, 60, 44", "<br>";
+$arr = array(1, 100, 5, 73, 11, 8, 9, 55, 56, 12, 60, 44);
+$reuslt = insertSort($arr);
+print_r($reuslt);
+?>
